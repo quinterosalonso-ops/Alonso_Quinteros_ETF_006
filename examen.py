@@ -110,7 +110,18 @@ def agregar_pelicula(codigo, titulo, genero, duracion, clasificacion, idioma, es
     return True
 
 def eliminar_pelicula(codigo):
-    return True
+    for id, preciocupos in cartelera.items():
+        if id == codigo:
+            del cartelera[codigo]
+            for id, pelicula in peliculas.items():
+                if id == codigo:
+                    del peliculas[codigo]
+                    print("Película eliminada")
+                    return True
+    # print(cartelera)
+    # print(peliculas)
+    print("El código no existe")
+    return False
 # Fin Opciones
 
 # Funcion Principal
@@ -162,7 +173,8 @@ def menu():
                 case 4: # Agregar pelicula
                     pass
                 case 5: # Eliminar pelicula
-                    pass
+                        opelim = input("ingrese el codigo del producto que desea eliminar: ").upper()
+                        eliminar_pelicula(opelim)
                 case 6: # Salir
                     print("Programa finalizado.")
                     break
