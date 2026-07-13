@@ -65,7 +65,14 @@ def busqueda_precio(p_min, p_max):
         print(listapeliculas)
 
 def actualizar_precio(codigo, nuevo_precio):
-    return True
+    for id, preciocupos in cartelera.items():
+        if id.lower() == codigo:
+            # print(preciocupos[0])
+            preciocupos[0] = nuevo_precio
+            # print(preciocupos[0])
+            print("Precio actualizado")
+            return True
+    return False
 
 # Utilidades de crear
 '''
@@ -139,7 +146,19 @@ def menu():
                         except:
                             print("Debe ingresar valores enteros")
                 case 3: # Actualizar precio de pelicula
-                    pass
+                    while True:
+                        opactid = input("ingrese el codigo del producto que desea actualizar: ").lower()
+                        opactprecio = int(input("ingrese el valor nuevo del producto: "))
+                        actualizar_precio(opactid,opactprecio)
+                        Continuar=input("¿Desea actualizar otro precio (s/n)?").lower()
+                        match Continuar:
+                            case "s":
+                                continue
+                            case "n":
+                                break
+                            case _:
+                                print("Valor incorrecto volviendo al menu principal.")
+                                break
                 case 4: # Agregar pelicula
                     pass
                 case 5: # Eliminar pelicula
