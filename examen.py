@@ -86,27 +86,35 @@ es_3d   	    El usuario ingresa 's' o 'n'. El sistema almacena True si es 's', F
 precio  	    Número entero mayor que cero
 cupos       	Número entero mayor o igual a cero
 '''
-def rev_codigo():
-    pass
-def rev_titulo():
-    pass
-def rev_genero():
-    pass
-def rev_duracion():
-    pass
-def rev_clasificacion():
-    pass
-def rev_idioma():
-    pass
-def rev_es_3d():
-    pass
-def rev_precio():
-    pass
-def rev_cupos():
-    pass
+def rev_codigo(rev1):
+    return True
+def rev_titulo(rev2):
+    return True
+def rev_genero(rev3):
+    return True
+def rev_duracion(rev4):
+    return True
+def rev_clasificacion(rev5):
+    return True
+def rev_idioma(rev6):
+    return True
+def rev_es_3d(rev7):
+    return True
+def rev_precio(rev8):
+    return True
+def rev_cupos(rev9):
+    return True
 # Fin Utilidades de crear
 
 def agregar_pelicula(codigo, titulo, genero, duracion, clasificacion, idioma, es_3d, precio, cupos):
+    for id, precioscupo in cartelera.items():
+        if id==codigo:
+            print("El código ya existe")
+            break
+    newPeliculas={codigo: [titulo,genero,duracion,clasificacion,idioma,es_3d]}
+    
+    newCartelera={codigo: [precio,cupos]}
+
     return True
 
 def eliminar_pelicula(codigo):
@@ -171,19 +179,50 @@ def menu():
                                 print("Valor incorrecto volviendo al menu principal.")
                                 break
                 case 4: # Agregar pelicula
-                    pass
+                    rev1 = input("Ingresar Codigo: ")
+                    if rev_codigo(rev1) == False:
+                        print("El código ya existe")
+                        break
+                    rev2 = input("Ingresar Titulo: ")
+                    if rev_titulo(rev2) == False:
+                        break
+                    rev3 = input("Ingresar Genero: ")
+                    if rev_genero(rev3) == False:
+                        break
+                    rev4 = input("Ingresar Duracion en minutos: ")
+                    if rev_duracion(rev4) == False:
+                        break
+                    rev5 = input("Ingresar clasificacion A/B/C: ")
+                    if rev_clasificacion(rev5) == False:
+                        break
+                    rev6 = input("Ingresar Idioma")
+                    if rev_idioma(rev6) == False:
+                        break
+                    rev77=True
+                    rev7 = input("Ingresar si es 3D s/n: ")
+                    if rev_es_3d(rev7) == False:
+                        break
+                    if rev7.lower == "n":
+                        rev77 = False
+                    rev8 = int(input("Ingresar precio: "))
+                    if rev_precio(rev8) == False:
+                        break
+                    rev9 = int(input("Ingresar cupos disponibles: "))
+                    if rev_cupos(rev9) == False:
+                        break
+                    agregar_pelicula(rev1,rev2,rev3,rev4,rev5,rev6,rev77,rev8,rev9)
+                    print("Película agregada")
                 case 5: # Eliminar pelicula
-                        opelim = input("ingrese el codigo del producto que desea eliminar: ").upper()
-                        eliminar_pelicula(opelim)
+                    opelim = input("ingrese el codigo del producto que desea eliminar: ").upper()
+                    eliminar_pelicula(opelim)
                 case 6: # Salir
                     print("Programa finalizado.")
                     break
                 case _:
                     print("Debe seleccionar una opción válida")
-                    pass
         except:
             print("Valor incorrecto volviendo al menu principal.")
-            pass
+
 # Fin Funcion Principal
 
 # Ejecutar
