@@ -14,6 +14,8 @@ peliculas = {
     'P104': ['Risa Total', 'comedia', 105, 'A', 'Español', True],
     'P105': ['Código Zero', 'thriller', 118, 'C', 'Ingles', True],
     'P106': ['Viaje Lunar', 'ciencia ficción', 132, 'B', 'Ingles', False],
+    'P107': ['Avengers End Game', 'acción', 300, 'A', 'Español', True],
+    'P108': ['Ms Marvel', 'acción', 120, 'C', 'Español', False],
 }
 
 '''
@@ -26,13 +28,31 @@ cartelera = {
     'P103': [4990, 25],
     'P104': [6990, 12],
     'P105': [8990, 8],
-    'P106': [7490, 3]
+    'P106': [7490, 3],
+    'P107': [10000, 27],
+    'P108': [2000, 49],
 }
 # Fin Datos
 
+# Funciones adicionales
+def verficicartexto(texto):
+    if texto == "" or texto == " ":
+        print("La opcion ingresada debe contener caracteres. ")
+        return False
+    return True
+# Fin funciones adicionales
+
+
 # Opciones
 def cupos_genero(genero):
-    pass
+    total_cupos_disponibles_de_peliculas_por_genero = 0
+    for id, pelicula in peliculas.items():
+        if pelicula[1] == genero:
+            # print(id) # print id de la pelicula correspondiente al genero
+            total_cupos_disponibles_de_peliculas_por_genero += int(cartelera[id][1])
+    print(f"Hay disponibles {total_cupos_disponibles_de_peliculas_por_genero} cupos para peliculas con el genero {genero}")
+
+
 
 def busqueda_precio(p_min, p_max):
     print()
@@ -92,23 +112,28 @@ def menu():
             print("5. Eliminar película")
             print("6. Salir")
             print("=====================================")
-            op= int(input("Ingrese la opcion para acceder al menu correspondiente"))
+            op= int(input("Ingrese la opcion para acceder al menu correspondiente: "))
             match op:
-                case 1:
+                case 1: #Cupos Por Genero
+                    opgenero = input("Ingrese el nombre del género por el cual desea buscar: ")
+                    if verficicartexto(opgenero) == False:
+                        return
+                    cupos_genero(opgenero)
+                case 2: # Busqueda de peliculas por rango de precio
                     pass
-                case 2:
+                case 3: # Actualizar precio de pelicula
                     pass
-                case 3:
+                case 4: # Agregar pelicula
                     pass
-                case 4:
+                case 5: # Eliminar pelicula
                     pass
-                case 5:
-                    pass
-                case 6:
+                case 6: # Salir
                     pass
                 case _:
+                    print("Debe seleccionar una opción válida")
                     pass
         except:
+            print("Valor incorrecto volviendo al menu principal.")
             pass
 # Fin Funcion Principal
 
