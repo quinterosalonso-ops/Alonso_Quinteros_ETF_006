@@ -52,10 +52,17 @@ def cupos_genero(genero):
             total_cupos_disponibles_de_peliculas_por_genero += int(cartelera[id][1])
     print(f"Hay disponibles {total_cupos_disponibles_de_peliculas_por_genero} cupos para peliculas con el genero {genero}")
 
-
-
 def busqueda_precio(p_min, p_max):
-    print()
+    listapeliculas=[]
+    for id, preciocupos in cartelera.items():
+        if p_min <= preciocupos[0] <= p_max:
+            if preciocupos[1] !=0:
+                listapeliculas.append(peliculas[id])
+    listapeliculas.sort()
+    if len(listapeliculas) == 0:
+        print("No hay películas en ese rango de precios.")
+    else:
+        print(listapeliculas)
 
 def actualizar_precio(codigo, nuevo_precio):
     return True
@@ -120,7 +127,17 @@ def menu():
                         return
                     cupos_genero(opgenero)
                 case 2: # Busqueda de peliculas por rango de precio
-                    pass
+                    while True:
+                        try:
+                            opminPrecio = int(input("Ingrese el valor minimo de la entrada que desea buscar: "))
+                            opmaxPrecio = int(input("Ingrese el valor maximo de la entrada que desea buscar: "))
+                            if opmaxPrecio < 0 or opminPrecio < 0:
+                                print("Debe ingresar valores iguales o superior a 0")
+                                break
+                            busqueda_precio(opminPrecio,opmaxPrecio)
+                            break
+                        except:
+                            print("Debe ingresar valores enteros")
                 case 3: # Actualizar precio de pelicula
                     pass
                 case 4: # Agregar pelicula
@@ -128,7 +145,8 @@ def menu():
                 case 5: # Eliminar pelicula
                     pass
                 case 6: # Salir
-                    pass
+                    print("Programa finalizado.")
+                    break
                 case _:
                     print("Debe seleccionar una opción válida")
                     pass
