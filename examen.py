@@ -234,7 +234,7 @@ def menu():
                             print("La opcion ingresada debe contener caracteres. ")
                             break
                         
-                        rev4 = input("Ingresar Duracion en minutos: ")
+                        rev4 = int(input("Ingresar Duracion en minutos: "))
                         if rev_duracion(rev4) == False:
                             print("Debe ingresar un numero entero positivo distinto de 0")
                             break
@@ -244,7 +244,7 @@ def menu():
                             print("Debe ingresar A, B o C como clasificacion")
                             break
                         
-                        rev6 = input("Ingresar Idioma")
+                        rev6 = input("Ingresar Idioma: ")
                         if rev_idioma(rev6) == False:
                             print("La opcion ingresada debe contener caracteres. ")
                             break
